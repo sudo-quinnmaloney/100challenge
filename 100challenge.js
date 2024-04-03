@@ -1,10 +1,16 @@
 let submittedNamesList = [];
 
 function checkName() {
-    const input = document.getElementById('nameInput').value.trim();
+    const nameInput = document.getElementById('nameInput');
+    const input = nameInput.value.trim();
 
-    submittedNamesList.push(input);
-    updateSubmittedNamesList();
+    if (input && input.length > 2) {
+        submittedNamesList.push(input);
+        updateSubmittedNamesList();
+    } else {
+        // write error handler and case for too few characters
+    }
+    nameInput.value = "";
 }
 
 function updateSubmittedNamesList() {
@@ -14,7 +20,7 @@ function updateSubmittedNamesList() {
 
 
     submittedNamesList.forEach((name, index) => {
-        submittedNamesElement.innerHTML += `<li>${name}</li>`;
+        submittedNamesElement.innerHTML += `<li class="submittedName">${name}</li>`;
         submittedCounter.innerText = `${index + 1}`;
     });
 
